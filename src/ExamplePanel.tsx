@@ -3,36 +3,32 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import React from "react";
 
-
 function ExamplePanel({ context }: { context: PanelExtensionContext }): JSX.Element {
   const [variableValues, setVariableValues] = useState<any>({});
 
   const [renderDone, setRenderDone] = useState<(() => void) | undefined>();
 
   useLayoutEffect(() => {
-
     context.setVariable("myVar", 55);
+    context.setVariable("myVar2", "dogs");
 
     context.onRender = (renderState, done) => {
       setRenderDone(() => done);
-
       setVariableValues(renderState.variables);
-
     };
-
   }, [context]);
 
-  // invoke the done callback once the render is complete
   useEffect(() => {
     renderDone?.();
   }, [renderDone]);
 
   return (
     <div style={{ padding: "1rem" }}>
-      <h2>Fixed Variables</h2>
+      <h2>Variable Lock Extension</h2>
+      <div>
+        <p>This panel locks the values of variables specified by the layout maintainer such that they may be modified during use of this layout, but not overwritten if the layout is saved. Removing this panel from the layout will remove the variable lock.</p>
+      </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: "0.2rem" }}>
-        <b style={{ borderBottom: "1px solid" }}>Variable</b>
-        <b style={{ borderBottom: "1px solid" }}>Value</b>
         {Object.entries(variableValues).map(([key, value]) => (
           <React.Fragment key={key}>
             <div>{key}</div>
