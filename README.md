@@ -9,6 +9,8 @@ NOTE: This extension produces a non-interactive panel that *must* be added to a 
 
 Locked variables will show up in the Variables tab of the left sidebar, and will appear as regular variables. As mentioned above, these locked variables are editable during the visualization session, but Save action on the layout will not overwrite their values. The saved layout will simply load with the values defined in the extension code.
 
+Refreshing the layout will also restore variables to their "locked" value.
+
 ## Extension Basics
 
 [Foxglove](https://foxglove.dev) allows developers to create [extensions](https://docs.foxglove.dev/docs/visualization/extensions/introduction), or custom code that is loaded and executed inside the Foxglove application. This can be used to add custom panels. Extensions are authored in TypeScript using the `@foxglove/extension` SDK.
