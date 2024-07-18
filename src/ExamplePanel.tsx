@@ -9,8 +9,11 @@ function ExamplePanel({ context }: { context: PanelExtensionContext }): JSX.Elem
   const [renderDone, setRenderDone] = useState<(() => void) | undefined>();
 
   useLayoutEffect(() => {
+
+    // START OF LOCKED VARIABLES DEFINITION
     context.setVariable("myVar", 55);
     context.setVariable("myVar2", "dogs");
+    // END OF LOCKED VARIABLES DEFINITION
 
     context.onRender = (renderState, done) => {
       setRenderDone(() => done);
